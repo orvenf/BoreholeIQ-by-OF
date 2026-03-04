@@ -4,8 +4,9 @@
 No more typing or manual copying. Just point BoreholeIQ at your scanned PDFs or images, and it extracts all the geological layers, samples, and test data into standard formats.  
 
 
-### Main Interface
-![BoreholeIQ main window](screenshots/UI_Main.png)
+
+
+![BoreholeIQ main window](UI_Main.png)
 
 
 ---
