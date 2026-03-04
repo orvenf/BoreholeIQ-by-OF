@@ -1,7 +1,12 @@
-# BoreholeIQ v2  
+# BoreholeIQ v2  (Experimental)
 **Turn borehole reports into AGS4, CSV, and XML – automatically.**  
 
 No more typing or manual copying. Just point BoreholeIQ at your scanned PDFs or images, and it extracts all the geological layers, samples, and test data into standard formats.  
+
+
+### Main Interface
+![BoreholeIQ main window](screenshots/UI_Main.png)
+
 
 ---
 
