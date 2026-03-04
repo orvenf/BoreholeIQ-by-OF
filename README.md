@@ -6,7 +6,7 @@ No more typing or manual copying. Just point BoreholeIQ at your scanned PDFs or 
 
 
 
-![BoreholeIQ main window](UI_Main.png)
+![BoreholeIQ main window](BoreholeIQ-Screenshots/UI_Main.png)
 
 
 ---
