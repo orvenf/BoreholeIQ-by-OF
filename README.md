@@ -236,5 +236,3 @@ Built with:
 * **Rust**
 * **Tesseract 5** for OCR
 * **Ollama** for local AI inference
-
-If you want, I’ll give you an even better **GitHub-polished version** next with badges, a feature table, and a cleaner top section.
