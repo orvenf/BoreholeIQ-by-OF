@@ -1,49 +1,84 @@
+
 # BoreholeIQ v2 R27
 
-**Prototype by Orven Fajardo**
+**Offline borehole data extraction for PDFs, images, and spreadsheets**
 
-BoreholeIQ converts borehole PDFs, images, and spreadsheets into **AGS4**, **CSV**, and **DIGGS XML**.
+BoreholeIQ converts geotechnical source files into **AGS4**, **OpenGround-ready CSV**, and **DIGGS XML**.
 
 It runs **fully offline** on Windows. No cloud services, no API keys, and no data leaves the machine.
 
----
-
-## Overview
-
-BoreholeIQ processes geotechnical source files and produces structured outputs ready for downstream use, including OpenGround workflows.
-
-**Supported inputs:**
-
-* Borehole log PDFs
-* Scanned reports and images
-* CPT reports
-* Laboratory certificates
-* Spreadsheets
-
-**Supported outputs:**
-
-* AGS4
-* OpenGround-ready CSV files
-* DIGGS XML
-* Quality and provenance reports
-
-The system supports **25 languages**, including **Indonesian, Vietnamese, Thai, Malay, and Filipino**.
+> Prototype by Orven Fajardo
 
 ![BoreholeIQ main window](BoreholeIQ-Screenshots/R27_UI.png)
 
 ---
 
+## Overview
+
+BoreholeIQ is a Windows desktop prototype for extracting structured geotechnical data from borehole reports and related source files.
+
+It supports both **digital PDFs** and **scanned documents**, combining native text extraction, OCR, deterministic parsing, and optional local AI to produce outputs suitable for downstream engineering workflows.
+
+---
+
+## Key Features
+
+- Fully offline processing
+- No cloud services or external API keys
+- Converts PDFs, images, and spreadsheets into structured engineering outputs
+- Supports AGS4, OpenGround-ready CSV, and DIGGS XML
+- Works with both native-text and scanned PDFs
+- Optional local AI parsing through Ollama
+- Deterministic pattern-matching fallback
+- Batch processing support
+- Quality scoring and provenance tracking
+- Support for 25 languages, including Indonesian, Vietnamese, Thai, Malay, and Filipino
+
+---
+
+## Supported Inputs
+
+- Borehole log PDFs
+- Scanned reports
+- Images
+- CPT reports
+- Laboratory certificates
+- Spreadsheets
+- XLSX files
+- AGS files
+
+---
+
+## Produced Outputs
+
+### Per borehole
+
+- `output.ags` — AGS4 output with self-validation
+- `loca.csv` — OpenGround-ready location data
+- `geol.csv` — OpenGround-ready geology data
+- `samp.csv` — OpenGround-ready sample data
+- `ispt.csv` — OpenGround-ready SPT data
+- `openground_mapping.xml` — CSV import mapping for OpenGround
+- `output.diggs.xml` — DIGGS 2.5.x output
+- `manifest.json` — extraction summary with quality score
+- `provenance.json` — audit trail
+
+### Per batch
+
+- `project.ags` — combined AGS4 output
+- `batch_summary.html` — batch processing summary
+
+---
+
 ## How It Works
 
-1. Add a borehole report PDF, image, or spreadsheet.
+1. Add a borehole PDF, image, or spreadsheet.
 2. BoreholeIQ extracts text using either:
-
-   * the native PDF text layer, or
-   * OCR for scanned documents.
+   - the native PDF text layer, or
+   - OCR for scanned documents.
 3. The extracted content is parsed using:
-
-   * a local AI model via **Ollama**, or
-   * deterministic pattern matching.
+   - a local AI model through **Ollama**, or
+   - deterministic pattern matching.
 4. The application generates structured outputs and a quality report.
 
 ---
@@ -59,47 +94,26 @@ Then:
 
 On a fresh machine, installation typically takes around **25 minutes**.
 
-The deployment process installs all required components from scratch, including:
+The deployment process installs required components from scratch, including:
 
-* Build tools
-* OCR engine
-* Local AI runtime
-* Application dependencies
+- Build tools
+- OCR runtime
+- Local AI runtime
+- Application dependencies
 
 If deployment stops partway through, run `deploy.bat` again. Completed steps are skipped automatically.
 
-**Output executable:**
+### Output executable
 
 ```text
 C:\BoreholeIQ\src-tauri\target\release\borehole-iq.exe
-```
-
----
-
-## Outputs
-
-### Per borehole
-
-* `output.ags` — AGS4 output with self-validation
-* `loca.csv` — OpenGround-ready LOCA data
-* `geol.csv` — OpenGround-ready geology data
-* `samp.csv` — OpenGround-ready sample data
-* `ispt.csv` — OpenGround-ready SPT data
-* `openground_mapping.xml` — CSV import mapping for OpenGround
-* `output.diggs.xml` — DIGGS 2.5.x output for US workflows
-* `manifest.json` — Extraction summary with quality score
-* `provenance.json` — Audit trail
-
-### Per batch
-
-* `project.ags` — Combined AGS4 file
-* `batch_summary.html` — Batch processing summary
+````
 
 ---
 
 ## AI Model Selection
 
-During deployment, BoreholeIQ detects available RAM and selects an appropriate model automatically.
+During deployment, BoreholeIQ detects available RAM and selects a model automatically.
 
 | RAM            | Model              | Notes                     |
 | -------------- | ------------------ | ------------------------- |
@@ -109,7 +123,7 @@ During deployment, BoreholeIQ detects available RAM and selects an appropriate m
 | 24–47 GB       | `llama3.1:8b`      | Higher accuracy           |
 | 48+ GB         | `mistral-nemo:12b` | Best extraction quality   |
 
-### Use a Different Model
+### Use a different model
 
 Run:
 
@@ -117,13 +131,13 @@ Run:
 ollama pull llama3.1:70b
 ```
 
-Create this file:
+Create:
 
 ```text
 %LOCALAPPDATA%\BoreholeIQ\ai_config.json
 ```
 
-With this content:
+With:
 
 ```json
 {
@@ -135,7 +149,7 @@ With this content:
 
 Then restart the application.
 
-**Notes:**
+### Notes
 
 * AI runs on **CPU**
 * The first file may take **2 to 5 minutes** while the model loads
@@ -197,16 +211,14 @@ The application stores learned extraction data in:
 | Problem                  | Recommended action                                                                                                                 |
 | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
 | Build fails at Step 4    | Check that `scaffold_files.json` is the expected size. Delete `%LOCALAPPDATA%\BoreholeIQ\state\4-app.ok` and run deployment again. |
-| AI times out             | This is normal on the first file while the model loads. Wait, or switch to **REGEX** mode.                                         |
+| AI times out             | This is normal on the first file while the model loads. Wait or switch to **REGEX** mode.                                          |
 | AI never starts          | Create `ai_config.json` using a valid model name from `ollama list`.                                                               |
 | No layers extracted      | Try a different extraction mode (**Auto** vs **Pattern**) and verify the selected language.                                        |
 | SSL errors during deploy | Common on some corporate networks. The deploy process is designed to handle this automatically.                                    |
 
 ---
 
-## What Changed from R26
-
-R27 adds:
+## What’s New in R27
 
 * Batch AGS4 output
 * DIGGS XML export
@@ -228,8 +240,6 @@ R27 adds:
 ---
 
 ## Technology Stack
-
-Built with:
 
 * **Tauri 2**
 * **React**
