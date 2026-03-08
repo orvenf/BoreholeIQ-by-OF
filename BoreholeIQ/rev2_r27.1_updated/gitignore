@@ -1,0 +1,19 @@
+# Build output (generated on target machine)
+target/
+dist/
+node_modules/
+
+# State files (per-machine)
+*.ok
+
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/

@@ -1,0 +1,46 @@
+{
+    "app_dir": "C:\\BoreholeIQ",
+    "versions": {
+        "python": "3.12.7",
+        "python_fallbacks": ["3.12.8", "3.12.6"],
+        "node": "20.14.0",
+        "tesseract": "5.4.0.20240606",
+        "poppler": "23.11.0-0",
+        "font": "2.304",
+        "min_node_major": 20,
+        "min_rust_minor": 85
+    },
+    "urls": {
+        "vc_redist": "https://aka.ms/vs/17/release/vc_redist.x64.exe",
+        "vs_buildtools": "https://aka.ms/vs/17/release/vs_buildtools.exe",
+        "node_msi": "https://nodejs.org/dist/v{node}/node-v{node}-x64.msi",
+        "rustup": "https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe",
+        "webview2": "https://go.microsoft.com/fwlink/p/?LinkId=2124703",
+        "tesseract": "https://github.com/UB-Mannheim/tesseract/releases/download/v{tesseract}/tesseract-ocr-w64-setup-{tesseract}.exe",
+        "poppler": "https://github.com/oschwartz10612/poppler-windows/releases/download/v{poppler}/Release-{poppler}.zip",
+        "font_zip": "https://github.com/JetBrains/JetBrainsMono/releases/download/v{font}/JetBrainsMono-{font}.zip",
+        "tessdata_base": "https://github.com/tesseract-ocr/tessdata_fast/raw/4.1.0",
+        "ollama": "https://ollama.com/download/OllamaSetup.exe"
+    },
+    "tesseract_languages": [
+        "eng", "fra", "deu", "spa", "por", "ita", "nld", "rus",
+        "ara", "hin", "tam", "ben",
+        "chi_sim", "chi_tra", "jpn", "kor",
+        "tha", "vie", "mya", "khm", "lao", "ind", "msa", "fil", "jav"
+    ],
+    "ai_tiers": {
+        "1": { "name": "Regex-Only", "model": null, "context_chars": 0, "timeout_secs": 0, "pull_size_gb": 0 },
+        "2": { "name": "Basic", "model": "phi3:mini", "context_chars": 6000, "timeout_secs": 120, "pull_size_gb": 2.3 },
+        "3": { "name": "Standard", "model": "phi3:medium", "context_chars": 10000, "timeout_secs": 180, "pull_size_gb": 7.5 },
+        "4": { "name": "Performance", "model": "llama3.1:8b", "context_chars": 12000, "timeout_secs": 90, "pull_size_gb": 4.7 },
+        "5": { "name": "Powerhouse", "model": "mistral-nemo:12b", "context_chars": 20000, "timeout_secs": 120, "pull_size_gb": 7.1 }
+    },
+    "requirements": {
+        "disk_gb": 20,
+        "ram_gb": 8
+    },
+    "paths": {
+        "tesseract": "C:\\Program Files\\Tesseract-OCR",
+        "poppler": "C:\\Tools\\poppler"
+    }
+}
